@@ -1,7 +1,7 @@
 //Max Berkowitz, Chemotaxis, AP Comp Sci mods 6,7
 //http://berko-java.webs.com//Chemotaxis/Chemotaxis.html
 
-Bac[] bla=new Bac[524288];
+Bac[] bla=new Bac[500];
 Food fd=new Food();
 Food fd2=new Food();
 Cloud cd=new Cloud();
@@ -18,8 +18,8 @@ void setup() {
   smooth();
   background(0);
   frameRate(20);
-  for (int i=0;i<524288;i++) bla[i]=new Bac();
-  for (int n=1;n<524288;n++) bla[n].dead();
+  for (int i=0;i<bla.length;i++) bla[i]=new Bac();
+  for (int n=1;n<bla.length;n++) bla[n].dead();
   do1=0;
   do2=0;
 }
@@ -33,7 +33,7 @@ void draw() {
       startCount=0;
       cd.activate=false;
       cd.rad=0;
-      for (int ini=0;ini<524288;ini++) {
+      for (int ini=0;ini<bla.length;ini++) {
         bla[ini].dead();
         bla[ini].x=300;
         bla[ini].y=300;
@@ -62,7 +62,7 @@ void draw() {
   }
   else {  
     cd.go();
-    for (int intn=0;intn<524288;intn++) {
+    for (int intn=0;intn<bla.length;intn++) {
       if (antibiotic && !bla[intn].resistant) bla[intn].dead();
       if (bla[intn].alive && !famin) {
         if (dist(bla[intn].x, bla[intn].y, 300, 300)<cd.rad/2) {
@@ -118,7 +118,7 @@ void draw() {
   }
 }
 boolean allDead() {
-  for (int intt=0;intt<524288;intt++) {
+  for (int intt=0;intt<bla.length;intt++) {
     if (bla[intt].alive) return true;
   }
   return false;
@@ -127,7 +127,7 @@ void doIt(int i) {
   stroke(0, 0, 0, 10);
   fill(0, 0, 0, 10);
   rect(0, 0, 600, 600);
-  for (int in=0;in<524288;in++) {
+  for (int in=0;in<bla.length;in++) {
     bla[in].move();
     bla[in].show();
   }
